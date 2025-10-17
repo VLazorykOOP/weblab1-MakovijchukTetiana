@@ -4,50 +4,61 @@
     <meta charset="UTF-8">
     <meta name="author" content="Тетяна Маковійчук">
     <title>Новини компанії «Вишуканий смак»</title>
-    <style>
-        h2 {
-            text-align: center;
-        }
-        footer p {
-            text-align: center;
-        }
-    </style>
+    <style media="screen" title="Основні стилі">
+    h2 {
+        text-align: center;
+    }
+    footer p {
+        text-align: center;
+    }
+</style>
 </head>
 
 <body>
     <header id="news-header" class="header-main">
         <h2 lang="uk">Новини компанії «Вишуканий смак»</h2>
-    </header>
+        <nav>
+        <a href="author.html" class="active">Автор</a>
+        <a href="main.html">Компанія</a>
+        <a href="news.html">Новини</a>
+    </nav>
+    </header>  
 
-    <section title="Останні події">
+        <section title="Останні події" style="background-color: #f9f9f9;">
+
         <article class="news" id="news-collection">
-            <h3>Нова колекція вин <time datetime="2025">2025</time></h3>
+            <h3>Нова колекція вин <time datetime="2025" lang="uk" class="year" style="font-weight: bold;">2025</time>
+
             <p>
-                Ми раді представити нову серію вин від італійських виробників!<wbr>
+                Ми раді представити нову серію вин від італійських виробників!<wbr id="break" style="display: inline;">
                 Кожна пляшка <span class="note">зберігає унікальний аромат і смак</span>.
             </p>
 
-            <img src="images1.jpg" alt="опис зображення" usemap="#wine" hspace="10" class="news-image" width="300">
-
-            <map id="wine" name="wine">
-                <area shape="rect" coords="0,0,50,50" href="red.html" target="_blank" title="Червоне вино">
-                <area shape="rect" coords="51,0,100,50" href="white.html" target="_blank" title="Біле вино">
+            <img src="images/images1.jpg" alt="опис зображення" usemap="#wine" hspace="10" class="news-image" width="300">
+            <map id="wine" name="wine" style="border: 1px solid #ccc;" tabindex="0">
+                <area shape="rect" coords="0,0,50,50" href="red.html" target="_blank" title="Червоне вино" tabindex="0">
+                <area shape="rect" coords="51,0,100,50" href="white.html" target="_blank" title="Біле вино" tabindex="0">
             </map>
+            <p>Вміст цукру: 5 г/дм<sup id="sugar-sup" lang="uk">3</sup>.</p>
+            <p>Основні речовини: H<sub class="chem" lang="en">2</sub>O, C<sub class="chem" lang="en">2</sub>H<sub class="chem" lang="en">5</sub>OH.</p>
+            <span class="note" style="color: darkred;">зберігає унікальний аромат і смак</span>
         </article>
 
-        <p><ins datetime="2025-10-09">Наше вино отримало нагороду у 2025</ins></p>
+        <ins datetime="2025-10-09" style="color: green;">Наше вино отримало нагороду у 2025</ins>
 
         <article class="news" id="news-events">
             <h3>Майстер-клас з дегустації</h3>
             <p>
                 Запрошуємо на безкоштовний майстер-клас з дегустації для клієнтів.
-                Дата проведення: <time datetime="2025-10-19">19 жовтня 2025</time>.
+                Дата проведення: <time datetime="2025-10-19" lang="uk" class="event-date" style="color:brown;">19 жовтня 2025</time>
+
             </p>
 
             <div>
                 <p>Реєстрація через форму на сайті. У програмі: презентація нової колекції, поради сомельє, відповіді на питання.</p>
                 <p class="meta">Місце: <span>м. Чернівці, Дегустаційна зала</span></p>
             </div>
+        
         </article>
     </section>
 
