@@ -1,0 +1,227 @@
+/* === Основні стилі сторінки === */
+body {
+  font-family: Arial, sans-serif;
+  color: #222;
+  background-color: #f5f5f5;
+  background-image: url('images/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  line-height: 1.5;
+  direction: ltr;
+  unicode-bidi: normal;
+}
+
+/* === Блоки === */
+header, footer, section, article {
+  margin: 10px 5%;
+  padding: 10px 20px;
+  border-width: thin;
+  border-style: outset;
+  border-color: #ccc;
+  background-color: #fafafa;
+}
+
+/* === Заголовки === */
+#author, #news-header, #news-footer {
+  text-align: center;
+  color: darkred;
+  border-bottom: 2px solid #900;
+}
+
+/* === Інформаційні блоки === */
+.info {
+  color: #333;
+  margin-bottom: 1%;
+  padding-left: 10px;
+}
+
+section p b {
+  color: #2e29a9;
+}
+
+/* === Селектори сусідів === */
+h3 + p {
+  border-top: 2px groove #aaa;
+  padding-top: 6px;
+}
+h3 ~ p {
+  background-color: #fdf5f5;
+}
+
+/* === Селектори атрибутів === */
+[title] {
+  border-bottom: 1px dotted gray;
+}
+[lang="uk"] {
+  background-color: #fefefe;
+}
+[title="Автор"] {
+  font-style: italic;
+}
+[title*="вино"] {
+  color: #990000;
+}
+
+/* === Класові селектори === */
+[class*="bio"] {
+  color: #006666;
+}
+
+/* === Посилання === */
+a:link {
+  color: #0066cc;
+}
+a:visited {
+  color: #2b1b80;
+}
+a.active:link {
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Псевдокласи === */
+p:first-child {
+  font-weight: bold;
+}
+p:last-of-type {
+  font-style: italic;
+}
+p:lang(uk) {
+  background-color: #fff8f8;
+}
+input:enabled {
+  border: 1px solid #666;
+}
+input:disabled {
+  border: 1px dashed #999;
+  background-color: #eee;
+}
+
+/* === Псевдоелементи === */
+p::first-line {
+  text-transform: uppercase;
+  color: #333;
+}
+footer::after {
+  content: " — Усі права захищені";
+  color: gray;
+  font-size: 0.9em;
+}
+
+/* === Навігація === */
+header {
+  margin-bottom: 2%;
+  padding-top: 20px;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-image: url('images/bg.jpg.jpg');
+  background-attachment: scroll;
+  background-position: top center;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 0 15px;
+  color: #800000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #b30000;
+  text-decoration: underline;
+}
+
+/* === Селектор спадкоємців === */
+header nav a {
+  font-size: 1.1em;
+}
+
+/* === Секції === */
+section {
+  border-left-style: double;
+  border-left-width: 6px;
+  border-left-color: #8b0000;
+  position: relative;
+  z-index: auto;
+}
+
+/* === Табличний приклад для display === */
+.table-sample {
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+}
+.cell-sample {
+  display: table-cell;
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  height: auto;
+}
+img.news-image {
+  float: left;
+  margin-right: 15px;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+footer {
+  clear: both;
+}
+
+/* === Вертикальне вирівнювання === */
+sup {
+  vertical-align: super;
+}
+sub {
+  vertical-align: sub;
+}
+
+blockquote {
+  overflow: hidden;
+  clip: rect(0px, 300px, 100px, 0px);
+}
+
+.note {
+  visibility: visible;
+}
+
+abbr {
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: #333;
+}
+
+.line {
+  border-top: 1px dotted #ccc;
+}
+.values {
+  border-right-style: outset;
+  border-right-width: 4px;
+  border-right-color: #c99;
+  padding-right: 10px;
+}
+
+h2 {
+  color: #004080 !important;
+}
+
+p {
+  line-height: 120%;
+}
