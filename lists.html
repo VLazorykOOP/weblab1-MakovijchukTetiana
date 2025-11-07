@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Списки — Вишуканий смак</title>
+  <link rel="stylesheet" href="styles.css" type="text/css" title="Основні стилі" dir="ltr" id="main-style" sizes="(max-width: 600px)">
+</head>
+<body>
+  <header>
+    <h1 title="Назва компанії">Компанія «Вишуканий смак»</h1>
+  </header>
+
+  <!-- Навігація -->
+  <nav class="main-nav">
+    <a href="author.html" class="active" title="Автор сайту" type="text/html" download="author.html" coords="0,0,100,100" accesskey="a" lang="uk">Автор</a> |
+    <a href="main.html" title="Головна сторінка" type="text/html" download="main.html" coords="0,0,100,100" accesskey="m" lang="uk">Компанія</a> |
+    <a href="news.html" title="Новини" type="text/html" download="news.html" coords="0,0,100,100" accesskey="n" lang="uk">Новини</a> |
+    <a href="lists.html" title="Списки" type="text/html" download="lists.html" coords="0,0,100,100" accesskey="l" lang="uk">Списки</a> |
+    <a href="menu.html" title="Меню сайту" type="text/html" download="menu.html" coords="0,0,100,100" accesskey="e" lang="uk">Меню</a>
+  </nav>
+
+  <marquee class="top-line" height="30" hspace="20" truespeed="true" loop="3" scrolldelay="60">
+    Ласкаво просимо до компанії «Вишуканий смак»! Вина, коньяки, шампанське — найкраща якість для ваших свят!
+  </marquee>
+
+  <section>
+    <h2>Історія компанії</h2>
+    <p>Компанія «Вишуканий смак» була заснована у 2005 році. Ми спеціалізуємося на постачанні елітних алкогольних напоїв преміум-класу.</p>
+
+    <h2>Нумерований список (ol)</h2>
+    <ol title="Асортимент продукції" style="color:#800000;" id="ol-products" type="A" lang="uk">
+      <li style="font-weight:bold;" start="1" value="1">Шампанське Moët &amp; Chandon</li>
+      <li style="font-weight:bold;" start="2" value="2">Коньяк Hennessy VSOP</li>
+      <li style="font-weight:bold;" start="3" value="3">Біле вино Marqués de Cáceres</li>
+    </ol>
+
+    <h2>Маркерований список (ul)</h2>
+    <ul title="Категорії товарів" type="circle" start="1" compact value="1">
+      <li style="color: #8b0000;" start="1" value="1">Вина</li>
+      <li style="color: #8b0000;" start="2" value="2">Коньяки</li>
+      <li style="color: #8b0000;" start="3" value="3">Настоянки</li>
+    </ul>
+
+    <h2>Список визначень (dl)</h2>
+    <dl title="Терміни виробництва" style="background:#f9f9f9; border:1px solid #ccc; padding:10px;">
+      <dt class="term" id="dt1" lang="uk">Витримка</dt>
+      <dd>Період дозрівання напою у дубових бочках, що формує його аромат.</dd>
+
+      <dt class="term" id="dt2" lang="uk">Аромат</dt>
+      <dd>Поєднання запахів, що розкривають характер напою під час дегустації.</dd>
+    </dl>
+
+    <h2>Інші теги</h2>
+    <p>Приклади допоміжних тегів:</p>
+
+    <dir id="old-directory">
+      <li>Постачальники</li>
+      <li>Партнери</li>
+      <li>Контакти</li>
+    </dir>
+
+    <command dir="ltr" title="Додаткова команда" style="color:blue;">Команда виконання</command>
+
+    <p>Назва компанії з тегом <bdi class="company-name">«Вишуканий смак»</bdi> відображається незалежно від напрямку тексту.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Вишуканий смак</p>
+    <p><a href="menu.html" title="Меню сайту">Повернутись до меню</a></p>
+  </footer>
+</body>
+</html>
