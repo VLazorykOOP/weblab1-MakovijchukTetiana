@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Вишуканий смак – Введення інформації</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #e9eaed;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6d7b90;
+            color: rgb(5, 5, 5);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+        main {
+            background-color: #f8f9fb;
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 900px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        h2 {
+            text-align: center;
+            color: #34312d;
+            margin-bottom: 25px;
+        }
+        fieldset {
+            border: 1px solid #2a2d72;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #f9f2f2;
+        }
+        legend {
+            font-weight: bold;
+            color: #322f2b;
+            padding: 0 10px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+        input, textarea, select, button {
+            margin-top: 5px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+        }
+        textarea {
+            resize: none;
+        }
+        button, input[type="submit"], input[type="button"] {
+            width: auto;
+            background-color: #e9b475;
+            color: #040404;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #ecc99e;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Форма введення нових алкогольних напоїв
+</header>
+
+<main>
+
+    <form id="wineForm" action="#" method="post" dir="ltr" 
+          accept="image/*" enctype="multipart/form-data" 
+          accept-charset="UTF-8">
+
+        <fieldset>
+            <legend lang="uk" title="Основна інформація" dir="ltr">Інформація про напій</legend>
+
+            <label title="Назва товару" form="wineForm">
+                Назва напою:
+                <input type="text" name="productName" size="40" minlength="3" lang="uk" 
+                       placeholder="Наприклад: Вино 'Cabernet Sauvignon'" required>
+            </label>
+
+            <label title="Тип напою" form="wineForm">
+                Тип напою:
+                <select id="drinkType" multiple style="width:100%;" size="3">
+                    <option id="opt1" dir="ltr" title="Вино" label="Вино">Вино</option>
+                    <option id="opt2" dir="ltr" title="Шампанське" label="Шампанське">Шампанське</option>
+                    <option id="opt3" dir="ltr" title="Коньяк" label="Коньяк">Коньяк</option>
+                </select>
+            </label>
+
+            <label title="Міцність напою" form="wineForm">
+                Міцність (%):
+                <input type="number" name="strength" min="0" max="80" value="12" lang="uk">
+            </label>
+
+            <label title="Дата виробництва" form="wineForm">
+                Дата виробництва:
+                <input type="datetime-local" name="dateProd">
+            </label>
+
+            <label title="Об'єм пляшки (мл)" form="wineForm">
+                Об’єм (мл):
+                <input type="number" name="volume" value="750" max="2000">
+            </label>
+
+            <label title="Ціна напою" form="wineForm">
+                Ціна (грн):
+                <input type="number" name="price" min="50" max="20000" required>
+            </label>
+
+            <label title="Фото напою" form="wineForm">
+                Фото товару:
+                <input type="file" name="photo" accept="image/*" height="40" form="wineForm">
+            </label>
+
+            <label title="Короткий опис" form="wineForm">
+                Опис:
+                <textarea name="desc" minlength="10" form="wineForm"
+                          placeholder="Короткий опис смаку, походження, аромату..." rows="4" dirname="desc.dir"></textarea>
+            </label>
+
+            <datalist id="suggestions" title="Підказки" lang="uk">
+                <option value="Merlot">
+                <option value="Cabernet Sauvignon">
+                <option value="Chardonnay">
+            </datalist>
+
+            <keygen disabled class="secureKey" keytype="rsa" title="Секретний ключ" style="display:none;">
+
+            <div style="text-align:center;">
+                <input type="submit" value="Відправити інформацію" form="wineForm" formtarget="_blank">
+                <input type="button" value="Очистити форму" onclick="document.getElementById('wineForm').reset();">
+            </div>
+        </fieldset>
+    </form>
+</main>
+
+<script>
+document.getElementById('wineForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.querySelector('[name="productName"]').value;
+    const price = document.querySelector('[name="price"]').value;
+    if(name.length < 3 || price <= 0){
+        alert("Будь ласка, введіть коректну назву та ціну!");
+    } else {
+        alert(`Товар "${name}" вартістю ${price} грн успішно збережено локально!`);
+    }
+});
+</script>
+
+</body>
+</html>
