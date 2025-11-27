@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Вишуканий смак - Панель управління</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f9f9f9; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #4a148c; } /* Фіолетовий колір під тему вина */
+        .task-box { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        textarea { width: 100%; height: 80px; margin-top: 10px; }
+        button { background-color: #4a148c; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 5px;}
+        button:hover { background-color: #6a1b9a; }
+    </style>
+    
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+</head>
+
+<body onload="alert('Вітаємо в системі адміністрування Вишуканий смак!')" onbeforeprint="alert('Підготовка до друку звіту...')">
+
+<div class="container">
+    <h1 onmouseover="this.style.color='red'" onmouseout="this.style.color='#4a148c'" onclick="alert('Це панель для менеджерів')">
+        Панель керування "Вишуканий смак"
+    </h1>
+
+    <div class="task-box">
+        <h2> Аналіз елементів форми</h2>
+        <p>Форма оформлення оптового замовлення алкоголю.</p>
+        
+        <form name="orderForm" id="orderForm">
+            <label>Назва товару:</label><br>
+            <input type="text" name="productName" value="Вино червоне сухе"><br><br>
+            
+            <label>Кількість ящиків:</label><br>
+            <input type="number" name="quantity" value="10"><br><br>
+            
+            <label>Тип оплати:</label><br>
+            <select name="paymentType">
+                <option value="cash">Готівка</option>
+                <option value="card">Карта</option>
+            </select><br><br>
+            
+            <input type="button" value="Run Task 3 (Аналіз форми)" onclick="showFormElements()">
+        </form>
+        
+        <p>Результат:</p>
+        <textarea id="output3"></textarea>
+    </div>
+
+    <div class="task-box">
+        <h2>Пошук цілих чисел у тексті</h2>
+        <p>Введіть примітку до замовлення (наприклад: "Потрібно 5 ящиків вина та 2 пляшки віскі"):</p>
+        <form name="searchForm">
+            <textarea id="searchText">Замовлення №123: 15 пляшок вина, 4 ящики шампанського, температура -5 градусів.</textarea>
+            <br>
+            <button type="button" onclick="findIntegers()">Знайти цілі числа</button>
+        </form>
+    </div>
+
+    <div class="task-box">
+        <h2> Обробка масивів даних</h2>
+        <p>Натисніть кнопку, щоб згенерувати масиви A і B та побудувати масив C (спочатку додатні, потім від'ємні).</p>
+        <button type="button" onclick="processArrays()">Array Task (Розрахунок)</button>
+        <div id="arrayOutput" style="margin-top: 10px; font-family: monospace;"></div>
+    </div>
+</div>
+
+<script>
+    function showFormElements() {
+        // Отримуємо доступ до форми за іменем
+        let form = document.forms['orderForm'];
+        let result = "Елементи форми 'orderForm':\n-\n";
+        
+        for (let i = 0; i < form.elements.length; i++) {
+            let el = form.elements[i];
+          
+            result += (i+1) + ". Name: " + el.name + " | Type: " + el.type + " | Value: " + el.value + "\n";
+        }
+      
+        document.getElementById('output3').value = result;
+    }
+    function findIntegers() {
+        let text = document.getElementById('searchText').value;
+        let regex = /-?\b\d+\b/g; 
+        
+        let matches = text.match(regex);
+        
+        if (matches) {
+            alert("Знайдені цілі числа: " + matches.join(", "));
+        } else {
+            alert("Цілих чисел не знайдено.");
+        }
+    }
+
+    function processArrays() {
+        let A = [10, -5, 3, -2, 8];
+        let B = [-1, 4, -6, 7, 0];
+        
+        let A_pos = A.filter(x => x > 0);
+        let B_pos = B.filter(x => x > 0);
+        
+        let A_neg = A.filter(x => x < 0);
+        let B_neg = B.filter(x => x < 0);
+        
+        let C = [...A_pos, ...B_pos, ...A_neg, ...B_neg];
+        
+        let outputDiv = document.getElementById('arrayOutput');
+        outputDiv.innerHTML = `
+            <strong>Масив A:</strong> [${A}]<br>
+            <strong>Масив B:</strong> [${B}]<br>
+            <hr>
+            <strong>Масив C (Результат):</strong> [${C}]<br>
+            <em>(Спочатку додатні: ${A_pos},${B_pos} ... потім від'ємні: ${A_neg},${B_neg})</em>
+        `;
+    }
+</script>
+
+</body>
+</html>
