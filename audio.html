@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Медіа Бібліотека</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        function set_arec() {
+            var audioSelect = document.getElementById("audio_select");
+            var audioPlayer = document.getElementById("my_audio_player");
+            audioPlayer.src = "audio/" + audioSelect.value;
+            audioPlayer.play();
+        }
+        function set_vrec() {
+            var videoSelect = document.getElementById("video_select");
+            var videoPlayer = document.getElementById("my_video_player");
+            videoPlayer.src = "video/" + videoSelect.value;
+            videoPlayer.play();
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Медіа Бібліотека</h1>
+    </header>
+
+    <div class="main-wrapper">
+        
+        <div class="media-container">
+            <h3>🎵 Моя Аудіотека</h3>
+            <form>
+                <label for="audio_select">Оберіть композицію:</label>
+                <select id="audio_select" onchange="set_arec()">
+                    <option value="" disabled selected>-- Натисніть для вибору --</option>
+                    <option value="song1.mp3.mp3">1. Лиш вона</option>
+                    <option value="song2.mp3.mp3">2. Білі черемхи</option>
+                    <option value="song3.mp3.mp3">3. В Одесу везу свою принцесу</option>
+                </select>
+            </form>
+
+            <audio id="my_audio_player" controls>
+                <source src="" type="audio/mpeg">
+                Ваш браузер не підтримує елемент audio.
+            </audio>
+        </div>
+
+        <div class="media-container">
+            <h3>🎬 Моя Відеотека</h3>
+            <form>
+                <label for="video_select">Оберіть відео:</label>
+                <select id="video_select" onchange="set_vrec()">
+                    <option value="" disabled selected>-- Натисніть для вибору --</option>
+                    <option value="movie1.mp4.mp4">Відео 1</option>
+                    <option value="movie2.mp4.mp4">Відео 2</option>
+                    <option value="movie3.mp4.mp4">Відео 3</option>
+                </select>
+            </form>
+
+            <video id="my_video_player" controls poster="video/poster.jpg">
+                <source src="" type="video/mp4">
+                Ваш браузер не підтримує елемент video.
+            </video>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2025 Власна медіа бібліотека. Всі права захищено.
+    </footer>
+
+</body>
+</html>
