@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <title>Вишуканий смак - Панель управління</title>
     <style>
-        body { font-family: sans-serif; background-color: #f9f9f9; padding: 20px; }
+        body { font-family: sans-serif; background-color: #f9f9f9; padding: 20px; min-height: 100vh; }
         .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         h1, h2 { color: #4a148c; } 
         .task-box { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
         textarea { width: 100%; height: 80px; margin-top: 10px; }
         button { background-color: #4a148c; color: white; border: none; padding: 10px 20px; cursor: pointer; margin-top: 5px;}
         button:hover { background-color: #6a1b9a; }
+
+        /* Стилі для Drag & Drop (перетягування) */
+        #dragItem { width: 100px; cursor: grab; padding: 10px; border: 1px dashed #4a148c; background: #e1bee7; text-align: center; }
+        #dropZone { width: 100%; height: 100px; border: 2px solid #4a148c; margin-top: 10px; display: flex; align-items: center; justify-content: center; background: #f3e5f5; color: #4a148c; }
+        
+        /* Стиль для відстеження миші */
+        #mouseArea { width: 100%; height: 50px; background: #eee; border: 1px solid #999; margin-top: 10px; cursor: crosshair; }
     </style>
     
     <meta http-equiv="Content-Script-Type" content="text/javascript">
 </head>
 
-<body onload="alert('Вітаємо в системі адміністрування Вишуканий смак!')" onbeforeprint="alert('Підготовка до друку звіту...')">
+<body onload="console.log('Система завантажена')" 
+      onbeforeprint="alert('Підготовка до друку звіту...')"
+      onoffline="alert('Увага! Зник інтернет-зв\'язок!')"
+      ononline="alert('Зв\'язок відновлено!')"
+      onblur="document.title='Поверніться в систему!'"
+      onfocus="document.title='Вишуканий смак - Панель управління'">
 
 <div class="container">
     <h1 onmouseover="this.style.color='red'" onmouseout="this.style.color='#4a148c'" onclick="alert('Це панель для менеджерів')">
@@ -24,12 +36,36 @@
     </h1>
 
     <div class="task-box">
-        <h2> Аналіз елементів форми</h2>
-        <p>Форма оформлення оптового замовлення алкоголю.</p>
         
+        <p ondblclick="alert('Секретна інформація: Пароль адміністратора 12345')" style="cursor: pointer; background: #eee; padding: 5px;">
+            <b>[Подвійний клік сюди]</b> щоб побачити приховану інформацію.
+        </p>
+
+        <p>Наведіть мишку на сіру зону, щоб побачити координати:</p>
+        <div id="mouseArea" onmousemove="showCoords(event)" onmouseout="clearCoords()">
+            Зона відстеження миші
+        </div>
+        <span id="coordDisplay"></span>
+    </div>
+
+    <div class="task-box">
+        <h2>Переміщення товару (Drag & Drop)</h2>
+        <p>Перетягніть товар у кошик:</p>
+        
+        <div id="dragItem" draggable="true" ondragstart="drag(event)">
+            Пляшка Вина
+        </div>
+
+        <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">
+            Кошик (Кидати сюди)
+        </div>
+    </div>
+
+    <div class="task-box">
+        <h2>Аналіз елементів форми</h2>
         <form name="orderForm" id="orderForm">
             <label>Назва товару:</label><br>
-            <input type="text" name="productName" value="Вино червоне сухе"><br><br>
+            <input type="text" name="productName" value="Вино червоне сухе" onfocus="this.style.background='#e1bee7'" onblur="this.style.background='white'"><br><br>
             
             <label>Кількість ящиків:</label><br>
             <input type="number" name="quantity" value="10"><br><br>
@@ -42,49 +78,70 @@
             
             <input type="button" value="Run Task 3 (Аналіз форми)" onclick="showFormElements()">
         </form>
-        
-        <p>Результат:</p>
         <textarea id="output3"></textarea>
     </div>
 
     <div class="task-box">
         <h2>Пошук цілих чисел у тексті</h2>
-        <p>Введіть примітку до замовлення (наприклад: "Потрібно 5 ящиків вина та 2 пляшки віскі"):</p>
         <form name="searchForm">
-            <textarea id="searchText">Замовлення №123: 15 пляшок вина, 4 ящики шампанського, температура -5 градусів.</textarea>
+            <textarea id="searchText">Замовлення №123: 15 пляшок вина, температура -5 градусів.</textarea>
             <br>
             <button type="button" onclick="findIntegers()">Знайти цілі числа</button>
         </form>
     </div>
 
     <div class="task-box">
-        <h2> Обробка масивів даних</h2>
-        <p>Натисніть кнопку, щоб згенерувати масиви A і B та побудувати масив C (спочатку додатні, потім від'ємні).</p>
+        <h2>Обробка масивів даних</h2>
         <button type="button" onclick="processArrays()">Array Task (Розрахунок)</button>
         <div id="arrayOutput" style="margin-top: 10px; font-family: monospace;"></div>
     </div>
 </div>
 
 <script>
+  
+    function showCoords(event) {
+        let x = event.clientX;
+        let y = event.clientY;
+        document.getElementById('mouseArea').innerText = "X: " + x + ", Y: " + y;
+    }
+
+    function clearCoords() {
+        document.getElementById('mouseArea').innerText = "Зона відстеження миші";
+    }
+
+  
+    function allowDrop(ev) {
+        ev.preventDefault(); 
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id); 
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data)); 
+        ev.target.style.background = "#d1c4e9";
+        alert("Товар успішно додано в кошик!");
+    }
+
+    
+    
     function showFormElements() {
-        // Отримуємо доступ до форми за іменем
         let form = document.forms['orderForm'];
-        let result = "Елементи форми 'orderForm':\n-\n";
-        
+        let result = "Елементи форми 'orderForm':\n\n";
         for (let i = 0; i < form.elements.length; i++) {
             let el = form.elements[i];
-          
             result += (i+1) + ". Name: " + el.name + " | Type: " + el.type + " | Value: " + el.value + "\n";
         }
-      
         document.getElementById('output3').value = result;
     }
+
     function findIntegers() {
         let text = document.getElementById('searchText').value;
         let regex = /-?\b\d+\b/g; 
-        
         let matches = text.match(regex);
-        
         if (matches) {
             alert("Знайдені цілі числа: " + matches.join(", "));
         } else {
@@ -95,13 +152,10 @@
     function processArrays() {
         let A = [10, -5, 3, -2, 8];
         let B = [-1, 4, -6, 7, 0];
-        
         let A_pos = A.filter(x => x > 0);
         let B_pos = B.filter(x => x > 0);
-        
         let A_neg = A.filter(x => x < 0);
         let B_neg = B.filter(x => x < 0);
-        
         let C = [...A_pos, ...B_pos, ...A_neg, ...B_neg];
         
         let outputDiv = document.getElementById('arrayOutput');
@@ -110,7 +164,6 @@
             <strong>Масив B:</strong> [${B}]<br>
             <hr>
             <strong>Масив C (Результат):</strong> [${C}]<br>
-            <em>(Спочатку додатні: ${A_pos},${B_pos} ... потім від'ємні: ${A_neg},${B_neg})</em>
         `;
     }
 </script>
